@@ -36,5 +36,12 @@ var checkInclusion = function(s1, s2) {
   }
 
   return false
+
+  // 1. 找出s1所有字個別出現次數
+  // 2. 建立size判斷是否捕捉到所有s1的字
+  // 3. 右指標出發 -> 直到找到所有該出現的字
+  // 4. 左指標出發 -> 移除視窗內不符合的字
+  // 5. 直到 視窗內長度 === s1 return true
+  // 6. 未符合 回到step 3
 };
 // @lc code=end
