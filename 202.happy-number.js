@@ -14,12 +14,12 @@ var isHappy = function(n) {
   let res = null
   
   while (true) {
-      let size = set.size
-      nums = n.toString().split('')
-      n = nums.reduce((acc, curr) => acc + curr ** 2, 0)
-      set.add(n)
-      
-      if (n === 1 || size === set.size) break
+    let size = set.size
+    nums = n.toString().split('')
+    n = nums.reduce((acc, curr) => acc + curr ** 2, 0)
+    set.add(n)
+    
+    if (n === 1 || size === set.size) break
   }
   
   return n === 1
