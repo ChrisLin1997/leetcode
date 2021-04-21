@@ -11,26 +11,22 @@
  * @return {number}
  */
 var minSubArrayLen = function(s, nums) {
-  let right = 0
   let left = 0
-  let result = 0
-  let size = 0
+  let right = 0
+  let sum = 0
+  let size = Infinity
   
   while (right < nums.length) {
-    result += nums[right]
+    sum += nums[right]
     
-    while (result >= target) {
-      size = Math.min(size, right - left + 1) || right - left + 1
-      
-      // early return
-      if (size === 1) return 1
-      result -= nums[left++]
+    while (sum >= target) {
+      size = Math.min(size, right - left + 1)
+      sum -= nums[left++]
     }
-    
     ++right
   }
   
-  return size
+  return size === Infinity ? 0 : size
 };
 // @lc code=end
 
