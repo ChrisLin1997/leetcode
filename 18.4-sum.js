@@ -40,9 +40,8 @@ var fourSum = function(nums, target) {
 
     while (nums[++small] === nums[small - 1]) {}
   }
-  
+
   return result
-};
 };
 // @lc code=end
 
