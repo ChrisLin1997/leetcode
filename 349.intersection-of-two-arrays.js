@@ -23,4 +23,3 @@ var intersection = function(nums1, nums2) {
   return Array.from(result)
 };
 // @lc code=end
-
