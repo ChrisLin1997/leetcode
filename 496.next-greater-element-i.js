@@ -11,24 +11,37 @@
  * @return {number[]}
  */
 var nextGreaterElement = function(nums1, nums2) {
-  let stack = []
-  let result = 0
+  const result = Array(nums2.length).fill(-1)
+  const monoStack = []
   
-  let i = 0
-  let length = prices.length
-  while (i < length) {
-    if ((stack[stack.length - 1] || 0) <= prices[i]) stack.push(prices[i])
-    else {
-      result += stack[stack.length - 1] - stack[0]
-      stack = []
-      stack.push(prices[i])
-    }
-    ++i
+  for (let i = 0; i < nums2.length; ++i) {
+      for (let j = monoStack.length - 1;j >= 0; --j) {
+          if (nums2[i] > nums2[monoStack[j]] && result[monoStack[j]] === -1) {
+              result[monoStack[j]] = nums2[i]
+              monoStack.pop()
+          } else {
+              break
+          }
+      }
+      monoStack.push(i)
   }
   
-  if (stack.length) result += stack[stack.length - 1] - stack[0]
+  const indexList = []
+  for (let num of nums1) {
+      for (let i = 0;i < nums2.length; ++i) {
+          if (nums2[i] === num) {
+              indexList.push(i)
+              break
+          }
+      }
+  }
   
-  return result
+  let answer = []
+  for (let index of indexList) {
+      answer.push(result[index])
+  }
+  
+  return answer
 };
 // @lc code=end
 
