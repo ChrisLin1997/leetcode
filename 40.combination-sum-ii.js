@@ -24,8 +24,7 @@ var combinationSum2 = function(candidates, target) {
           return
       }
       for (let i = index; i < candidates.length; ++i) {
-          // i - 1 >= index
-          // console.log(i, i -1, index)
+          // 後面再次出現(i- 1 >= index)且重複 跳過
           if (i - 1 >= index && candidates[i] === candidates[i - 1]) continue
           
           path.push(candidates[i])
