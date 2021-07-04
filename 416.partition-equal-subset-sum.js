@@ -10,21 +10,19 @@
  * @return {boolean}
  */
 var canPartition = function(nums) {
-  const equal = nums.reduce((acc, curr) => acc + curr, 0) / 2
-  if (Number.isInteger(equal) === false) return false
-
-  const dp = Array(nums.length + 1).fill().map(() => Array(equal + 1).fill(0))
-    
-  for (let i = 1; i <= nums.length; ++i) {
-      for (let j = 1; j <= equal; ++j) {
-          if (nums[i - 1] <= j)  dp[i][j] = Math.max(nums[i - 1] + dp[i - 1][j - nums[i - 1]], dp[i - 1][j])
-          else dp[i][j] = dp[i - 1][j]
-          
-          if (dp[i][j] === equal) return true
-      }   
-  }
+  const sum = nums.reduce((acc, curr) => acc + curr,0)
+  if (sum % 2 !== 0) return false
   
-  return false
+  const target = sum / 2
+  const dp = Array(target + 1).fill(0)
+
+  for (let i = 0; i < nums.length; ++i) {
+    for (let j = target; j >= 0; --j) {
+        if (j >= nums[i]) dp[j] = Math.max(nums[i] + dp[j - nums[i]], dp[j])
+    }
+  }
+
+  return dp[target] === target
 };
 // @lc code=end
 
